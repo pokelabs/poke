@@ -5,7 +5,6 @@ import { wordRuQuizStore } from '@/store/wordRuQuiz.store'
 import { actualWordStore } from '@/store/actualWord.store'
 import { Controller } from '@/types'
 import { createController } from '@/common/createController'
-import { Word } from '@/models/Word.model'
 import { exists } from '@/utils/exists'
 import { selectRandom } from '@/utils/helpers/selectRandom'
 import { DateTime } from 'luxon'
@@ -31,7 +30,9 @@ export const registerWordController: Controller = createController({
           const result = (lang === 'en' ? wordEnAllStore : wordRuAllStore).find(
             item => item.word === word,
           )
-          resolve({ word, language: lang, correct: exists(result) })
+          exists(result)
+            ? resolve({ correct: true })
+            : reject({ correct: false })
         },
       ['rest'],
     )
@@ -52,7 +53,7 @@ export const registerWordController: Controller = createController({
           resolve({
             word: wotd.word,
             lang: wotd.lang,
-            timeToNext: DateTime.now()
+            next: DateTime.now()
               .plus({ day: 1 })
               .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
               .toUnixInteger(),

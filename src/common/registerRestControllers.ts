@@ -16,10 +16,10 @@ export const registerRestControllers: RestControllerRegistrar =
     const restListenerMap: RestListenerMap = new Map()
 
     const createRestResolve = (res: RestResponse) => (result: any) =>
-      res.json({ status: 'resolved', result: result })
+      res.status(200).json(result)
 
     const createRestReject = (res: RestResponse) => (result: any) =>
-      res.json({ status: 'rejected', result: result })
+      res.status(400).json(result)
 
     const addListener =
       (

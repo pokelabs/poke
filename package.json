@@ -2,7 +2,7 @@
   "name": "@pokelabs/poke",
   "version": "1.0.0",
   "description": "Poke - universal backend engine with WS and Rest API",
-  "main": "/dist/index.js",
+  "main": "/dist/index.mjs",
   "scripts": {
     "build": "vite build",
     "dev": "nodemon nodemon.json",
