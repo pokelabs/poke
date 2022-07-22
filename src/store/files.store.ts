@@ -1,10 +1,9 @@
 import { useTable } from '@/store/store'
-import { primaryKey } from '@/models/Wall.model'
 import { PrimaryKeyFillStrategy } from '@/base/types'
 
 export const filesStore = useTable<{ id: number; content: string }, 'id'>(
   'files',
-  primaryKey,
+  'id',
   { pkStrategy: PrimaryKeyFillStrategy.AutoIncrement },
 )
 

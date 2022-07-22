@@ -108,7 +108,7 @@ export const registerRestControllers: RestControllerRegistrar =
           ...context,
           user: res.locals.user,
           event: eventName,
-        })(res, req.body)
+        })(res, { ...req.body, ...req.query })
       })
     })
 
